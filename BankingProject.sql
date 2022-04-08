@@ -1,5 +1,6 @@
 DROP DATABASE IF EXISTS `BankingProject`;
 
+-- create a database
 CREATE DATABASE IF NOT EXISTS `BankingProject`;
 
 USE `BankingProject`;
