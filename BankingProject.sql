@@ -16,7 +16,7 @@ CREATE TABLE `customers` (
 
 
 CREATE table banks(
-    Bankcode VARCHAR(255) NOT NULL,
+    Bankcode INTEGER NOT NULL,
     BankName VARCHAR(255) NOT NULL,
     MainOffice VARCHAR(255) NOT NULL,
     Address VARCHAR(255) ,
@@ -25,11 +25,11 @@ CREATE table banks(
 
 
 CREATE TABLE BRANCHES (
-    BranchCode VARCHAR(255) NOT NULL,
+    BranchCode INTEGER NOT NULL,
     Address VARCHAR(255) ,
     Manager  VARCHAR(255) ,
     HeadOffice VARCHAR(255) ,
-    Bankcode VARCHAR(255),
+    Bankcode INTEGER NOT NULL,
     PRIMARY KEY (BranchCode),
     FOREIGN KEY (Bankcode) REFERENCES Banks(Bankcode)
 
@@ -39,7 +39,7 @@ CREATE TABLE BRANCHES (
 CREATE TABLE EMPLOYEE (
     EmployeeID INTEGER NOT NULL,
     Name VARCHAR(255),
-    BranchCode VARCHAR(255) ,
+    BranchCode INTEGER ,
     PRIMARY KEY (EmployeeID),
     FOREIGN KEY (BranchCode) REFERENCES BRANCHES(BranchCode)
 );
@@ -49,15 +49,15 @@ CREATE TABLE EMPLOYEE (
 CREATE TABLE Admins (
     AdminID INTEGER NOT NULL,
     NAME VARCHAR(255),
-    Bankcode VARCHAR(255),
+    Bankcode INTEGER,
     PRIMARY KEY (AdminID),
     FOREIGN KEY (Bankcode) REFERENCES BANKS(BANKCODE)
 );
 
 CREATE TABLE BANKACCOUNTS (
-    AccNo VARCHAR(255) NOT NULL,
+    AccNo BIGINT NOT NULL,
     Type VARCHAR(255) ,
-    BranchCode VARCHAR(255),
+    BranchCode INTEGER,
     customerId int NOT NULL,
     PRIMARY KEY (AccNo),
     FOREIGN KEY (BranchCode) REFERENCES BRANCHES(BranchCode),
@@ -65,9 +65,9 @@ CREATE TABLE BANKACCOUNTS (
 
 );
 
-CREATE TABLE IF NOT EXISTS ACCOUNTS(
+CREATE TABLE IF NOT EXISTS TRANSACTIONS(
     TRANSACTIONNO INT NOT NULL,
-    AccNo VARCHAR(255) NOT NULL,
+    AccNo BIGINT NOT NULL,
     AMOUNT BIGINT ,
     TYPE ENUM('SAVINGS','CURRENT'),
     TIMESTAMP DATETIME,
@@ -80,10 +80,7 @@ CREATE TABLE reversalRequest(
     transactionNo int NOT NULL,
     reqDate datetime NOT NULL,
     PRIMARY KEY (requestid),
-    FOREIGN KEY (transactionNo) REFERENCES ACCOUNTS(transactionNo)
+    FOREIGN KEY (transactionNo) REFERENCES TRANSACTIONS(transactionNo)
 );
-
-
-
 
 
