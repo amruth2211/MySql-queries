@@ -18,8 +18,7 @@ CREATE TABLE `customers` (
 CREATE table banks(
     Bankcode INTEGER NOT NULL,
     BankName VARCHAR(255) NOT NULL,
-    MainOffice VARCHAR(255) NOT NULL,
-    Address VARCHAR(255) ,
+    MainOfficeAddress VARCHAR(255) ,
     Primary Key (Bankcode)
 );
 
@@ -82,5 +81,8 @@ CREATE TABLE reversalRequest(
     PRIMARY KEY (requestid),
     FOREIGN KEY (transactionNo) REFERENCES TRANSACTIONS(transactionNo)
 );
+
+INSERT INTO Banks VALUES('1234','SBI','HYDERABAD');
+INSERT INTO Banks VALUES('4356','ICICI','BANGALORE');
 
 
