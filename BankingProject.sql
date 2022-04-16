@@ -4,7 +4,15 @@ DROP DATABASE IF EXISTS `BankingProject`;
 CREATE DATABASE IF NOT EXISTS `BankingProject`;
 
 USE `bankingproject`;
-
+CREATE TABLE address(
+  addressId int NOT NULL ,
+  street varchar(50) NOT NULL,
+  city varchar(50) NOT NULL,
+  state varchar(50) NOT NULL,
+  country varchar(50) NOT NULL,
+   pincode int NOT NULL,
+  PRIMARY KEY (addressId)
+);
 DROP TABLE IF EXISTS `customers`;
 
 CREATE TABLE `customers` (
@@ -83,15 +91,7 @@ CREATE TABLE reversalRequest(
     PRIMARY KEY (requestid),
     FOREIGN KEY (transactionNo) REFERENCES TRANSACTIONS(transactionNo)
 );
-CREATE TABLE address(
-  addressId int NOT NULL ,
-  street varchar(50) NOT NULL,
-  city varchar(50) NOT NULL,
-  state varchar(50) NOT NULL,
-  country varchar(50) NOT NULL,
-   pincode int NOT NULL,
-  PRIMARY KEY (addressId)
-);
+
 
 INSERT into address VALUES('20','Nizampet','Hyderabad','Telangana','India','500090');
 
