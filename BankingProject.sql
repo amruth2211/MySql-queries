@@ -4,44 +4,32 @@ DROP DATABASE IF EXISTS `BankingProject`;
 CREATE DATABASE IF NOT EXISTS `BankingProject`;
 
 USE `bankingproject`;
-CREATE TABLE address(
-  addressId int NOT NULL ,
-  street varchar(50) NOT NULL,
-  city varchar(50) NOT NULL,
-  state varchar(50) NOT NULL,
-  country varchar(50) NOT NULL,
-   pincode int NOT NULL,
-  PRIMARY KEY (addressId)
-);
 DROP TABLE IF EXISTS `customers`;
 
 CREATE TABLE `customers` (
   `customerId` int(11) NOT NULL,
     name VARCHAR(255) ,
-    address INT NOT NULL,
-   PRIMARY KEY (`customerId`),
-    FOREIGN KEY (`ADDRESS`) REFERENCES ADDRESS (ADDRESSID)
+    address longtext,
+   PRIMARY KEY (`customerId`)
 ) ;
 
 
 CREATE table banks(
     Bankcode INTEGER NOT NULL,
     BankName VARCHAR(255) NOT NULL,
-    MainOfficeAddress INT ,
-    Primary Key (Bankcode),
-    FOREIGN KEY (`MAINOFFICEADDRESS`) REFERENCES ADDRESS (ADDRESSID)
+    MainOfficeAddress longtext,
+    Primary Key (Bankcode)
 );
 
 
 CREATE TABLE BRANCHES (
     BranchCode INTEGER NOT NULL,
-    Address INT ,
+    Address longtext,
     Manager  VARCHAR(255) ,
     HeadOffice VARCHAR(255) ,
     Bankcode INTEGER NOT NULL,
     PRIMARY KEY (BranchCode),
-    FOREIGN KEY (Bankcode) REFERENCES Banks(Bankcode),
-FOREIGN KEY (`ADDRESS`) REFERENCES ADDRESS (ADDRESSID)
+    FOREIGN KEY (Bankcode) REFERENCES Banks(Bankcode)
 
 );
 
@@ -92,15 +80,16 @@ CREATE TABLE reversalRequest(
     FOREIGN KEY (transactionNo) REFERENCES TRANSACTIONS(transactionNo)
 );
 
+INSERT INTO Banks VALUES('1234','SBI','Nizampet-Hyderabad-Telangana-India-500090');
+INSERT INTO Banks VALUES('4356','ICICI','Nizampet-Hyderabad-Telangana-India-500090');
 
-INSERT into address VALUES('20','Nizampet','Hyderabad','Telangana','India','500090');
-
-INSERT INTO Banks VALUES('1234','SBI','20');
-INSERT INTO Banks VALUES('4356','ICICI','20');
-
-insert into customers VALUES('12','amruth','20');
-insert into branches VALUES('250','20','patil','Delhi','1234');
+insert into customers VALUES('12','amruth','Nizampet-Hyderabad-Telangana-India-500090');
+insert into branches VALUES('250','Nizampet-Hyderabad-Telangana-India-500090','patil','Delhi','1234');
 insert into employee VALUES('430','sridevi','250');
 
 insert into bankaccounts values('89023383','savings','250','12');
 INSERT INTO TRANSACTIONS VALUES('2450','89023383','1000','debit',default);
+
+INSERT INTO admins VALUES('101','Sruthi','1234');
+
+Insert into reversalRequest VALUES('23','2450',default);
