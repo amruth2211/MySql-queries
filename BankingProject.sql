@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS TRANSACTIONS(
 CREATE TABLE reversalRequest(
     requestid int NOT NULL,
     transactionNo int NOT NULL,
-    reqDate datetime NOT NULL,
+    reqDate datetime DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (requestid),
     FOREIGN KEY (transactionNo) REFERENCES TRANSACTIONS(transactionNo)
 );
