@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `customerId` int(11) NOT NULL,
     name VARCHAR(255) ,
-    address longtext,
+    address VARCHAR(255),
    PRIMARY KEY (`customerId`)
 ) ;
 
@@ -17,14 +17,14 @@ CREATE TABLE `customers` (
 CREATE table banks(
     Bankcode INTEGER NOT NULL,
     BankName VARCHAR(255) NOT NULL,
-    MainOfficeAddress longtext,
+    MainOfficeAddress VARCHAR(255),
     Primary Key (Bankcode)
 );
 
 
 CREATE TABLE BRANCHES (
     BranchCode INTEGER NOT NULL,
-    Address longtext,
+    Address VARCHAR(255),
     Manager  VARCHAR(255) ,
     HeadOffice VARCHAR(255) ,
     Bankcode INTEGER NOT NULL,
@@ -80,16 +80,31 @@ CREATE TABLE reversalRequest(
     FOREIGN KEY (transactionNo) REFERENCES TRANSACTIONS(transactionNo)
 );
 
-INSERT INTO Banks VALUES('1234','SBI','Nizampet-Hyderabad-Telangana-India-500090');
-INSERT INTO Banks VALUES('4356','ICICI','Nizampet-Hyderabad-Telangana-India-500090');
+INSERT INTO Banks VALUES('1234','SBI','Nizampet,Hyderabad,Telangana,India,500090');
+INSERT INTO Banks VALUES('4356','ICICI','Nizampet,Hyderabad,Telangana,India,500090');
 
-insert into customers VALUES('12','amruth','Nizampet-Hyderabad-Telangana-India-500090');
-insert into branches VALUES('250','Nizampet-Hyderabad-Telangana-India-500090','patil','Delhi','1234');
+insert into customers VALUES('12','amruth','Nizampet,Hyderabad,Telangana,India,500090');
+
+insert into customers VALUES('13','Aasrith','Miyapur,Hyderabad,Telangana,India,500090');
+insert into branches VALUES('250','Nizampet,Hyderabad,Telangana,India,500090','patil','Delhi','1234');
+
+insert into branches VALUES('350','kukatpally,Hyderabad,Telangana,India,500090','Ramesh','Mumbai','4356');
 insert into employee VALUES('430','sridevi','250');
+insert into employee VALUES('530','Madhuri','350');
 
 insert into bankaccounts values('89023383','savings','250','12');
+insert into bankaccounts values('95098764','current','350','13');
+
 INSERT INTO TRANSACTIONS VALUES('2450','89023383','1000','debit',default);
+INSERT INTO TRANSACTIONS VALUES('3560','89023383','1000','credit',default);
 
 INSERT INTO admins VALUES('101','Sruthi','1234');
 
 Insert into reversalRequest VALUES('23','2450',default);
+
+Insert into reversalRequest VALUES('33','3560',default);
+
+
+
+
+
